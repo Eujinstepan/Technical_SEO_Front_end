@@ -71,6 +71,7 @@ const App = () => {
               isObject={true}
               data={data.isMobileFriendly}
             />
+              {console.log("isMobileFriendly", data.isMobileFriendly)}
             <ResultContainer
               label="Check Canonical Tags "
               buttonText="show result"
