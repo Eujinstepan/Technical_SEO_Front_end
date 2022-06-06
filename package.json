@@ -35,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "broken-link-checker": "^0.7.8",
+    "simplecrawler": "^1.1.9",
+    "super-simple-crawler": "^1.2.4"
   }
 }

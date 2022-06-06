@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import JSONPretty from "react-json-pretty";
 import "./App.css";
+// import blc from "broken-link-checker";
+import Crawler from "simplecrawler";
+import simpleCrawler from "super-simple-crawler";
 
 const ResultContainer = ({ label, buttonText, isObject, data }) => {
   const [showResult, setShowResult] = useState(false);
@@ -33,12 +36,13 @@ const ResultContainer = ({ label, buttonText, isObject, data }) => {
 const App = () => {
   const [url, setUrl] = useState("");
   const [data, setData] = useState(null);
+  const [pageSpeed, setPageSpeed] = useState(null);
 
   const handleSubmit = () => {
     fetch(`http://localhost:8000/api/v1/insight?url=${url}`)
       .then((response) => response.json())
       .then(setData);
-  };
+   };
 
   return (
     <div className="App">
@@ -66,12 +70,18 @@ const App = () => {
               data={data.leverage}
             />
             <ResultContainer
+              label="Find and fix crawl errors"
+              buttonText="show result"
+              isObject={true}
+              data={data.crawlerChecked}
+            />
+            <ResultContainer
               label="Ensure your website is mobile-friendly "
               buttonText="show result"
               isObject={true}
               data={data.isMobileFriendly}
             />
-              {console.log("isMobileFriendly", data.isMobileFriendly)}
+            {console.log("isMobileFriendly", data.isMobileFriendly)}
             <ResultContainer
               label="Check Canonical Tags "
               buttonText="show result"
@@ -89,6 +99,12 @@ const App = () => {
               buttonText="show result"
               isObject={true}
               data={data.StructureData}
+            />
+            <ResultContainer
+              label="Check the page depth"
+              buttonText="show result"
+              isObject={true}
+              data={data.crawlerResult}
             />
           </>
         )}
